@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 25">
+  <circle cx="10" cy="4" r="3" fill="white" />  <!-- Top circle -->
+  <circle cx="10" cy="12" r="3" fill="white" />  <!-- Middle circle -->
+  <circle cx="10" cy="20" r="3" fill="white" />  <!-- Bottom circle -->
+</svg>

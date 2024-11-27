@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root[data-theme='light'] {
+  --primary: #006BA6;
+  --secondary: #0C0A3E;
+  --accent: #9ca3af;
+  --neutral: #747474;
+  --base-100: #E6E6E6;
+  --info: #19647E;
+  --success: #22c55e;
+  --warning: #F2AF29;
+  --error: #B80000;
+}
+
+:root[data-theme='dark'] {
+  --primary: #006BA6;
+  --secondary: #1F1B57;
+  --accent: #6B7280;
+  --neutral: #3D3D3D;
+  --base-100: #1E1E1E;
+  --info: #1E748E;
+  --success: #16A34A;
+  --warning: #D99122;
+  --error: #8B0000;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--base-100);
+}
+
+*:hover {
+  scrollbar-color: var(--primary) var(--base-100);
+}
