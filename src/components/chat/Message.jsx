@@ -6,7 +6,7 @@ const Message = ({ msg }) => {
   const userId = useSelector((state) => state.user.userInfo._id);
   return (
     <div
-      className={`chat ${userId == msg.sender._id ? "chat-end" : "chat-start"}`}
+      className={`chat ${userId == msg.sender._id ? "chat-end" : "chat-start"} space-y-2`} 
     >
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
@@ -16,14 +16,14 @@ const Message = ({ msg }) => {
           />
         </div>
       </div>
-      <div className="chat-header">
+      <div className="chat-header text-sm text-gray-600">
         {msg.sender.username}
         <time className="text-xs opacity-50 ml-2">
           {new Date(msg.updatedAt).toGMTString()}
         </time>
       </div>
       {msg.contentType === "text" ? (
-        <div className="chat-bubble chat-bubble-primary">{msg.content}</div>
+        <div className="chat-bubble chat-bubble-primary max-w-[50%] break-words">{msg.content}</div>  
       ) : null}
       <div className="chat-footer opacity-50 capitalize"></div>
     </div>
@@ -31,7 +31,7 @@ const Message = ({ msg }) => {
 };
 
 Message.propTypes = {
-  msg: PropTypes.object.isRequired
+  msg: PropTypes.object.isRequired,
 };
 
 export default Message;

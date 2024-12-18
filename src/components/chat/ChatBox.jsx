@@ -124,70 +124,74 @@ const ChatBox = ({ selectedChat, handleBack }) => {
   }, [dispatch]);
 
   return (
-    <div className="relative h-screen">
-      <div className="flex justify-between items-center p-2 bg-primary px-8">
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <img
-              src={picture || img || groupImg}
-              alt="Chat"
-              className="h-12 w-12 rounded-full"
-            />
-          </div>
-          <p className="text text-2xl text-white">{chatName}</p>
-        </div>
-        <button
-          className="flex gap-2 items-center text-white capitalize"
-          onClick={handleBack}
-        >
-          <IoIosArrowBack />
-          <span>back</span>
-        </button>
-      </div>
-      <div
-        className="h-full overflow-y-scroll p-4 pb-52 w-full"
-        ref={messagesRef}
-      >
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            {messages.map((message) => (
-              <Message msg={message} key={message._id} />
-            ))}
-            {typing && (
-              <div className="flex items-center space-x-2">
-                <div className="flex space-x-1.5">
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75"></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
-                </div>
-                <span className="text-sm text-gray-500 capitalize">
-                  {whoIsTyping} is typing...
-                </span>
-              </div>
-            )}
-          </>
-        )}
-      </div>
-      <form
-        onSubmit={sendMessage}
-        method="post"
-        className="flex items-center gap-3 p-4 absolute bottom-0 w-full bg-base-100"
-      >
-        <input
-          type="text"
-          placeholder="Type a message"
-          className="input input-bordered w-full px-4 text-base-content"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
+    <div className="relative flex flex-col h-screen">
+  <div className="flex justify-between items-center p-2 bg-primary px-8">
+    <div className="flex items-center gap-4">
+      <div className="relative">
+        <img
+          src={picture || img || groupImg}
+          alt="Chat"
+          className="h-12 w-12 rounded-full"
         />
-        <button className="btn bg-primary text-white" disabled={isSending}>
-          {isSending ? "Sending..." : "Send"}
-        </button>
-      </form>
+      </div>
+      <p className="text text-2xl text-white">{chatName}</p>
     </div>
+    <button
+      className="flex gap-2 items-center text-white capitalize"
+      onClick={handleBack}
+    >
+      <IoIosArrowBack />
+      <span>back</span>
+    </button>
+  </div>
+
+  <div
+    className="flex-1 overflow-y-auto p-4 pb-16 w-full break-words"  // Use flex-1 to ensure it fills the available space
+    ref={messagesRef}
+  >
+    {loading ? (
+      <Loading />
+    ) : (
+      <>
+        {messages.map((message) => (
+          <Message msg={message} key={message._id} />
+        ))}
+        {typing && (
+          <div className="flex items-center space-x-2">
+            <div className="flex space-x-1.5">
+              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+            </div>
+            <span className="text-sm text-gray-500 capitalize">
+              {whoIsTyping} is typing...
+            </span>
+          </div>
+        )}
+      </>
+    )}
+  </div>
+
+  {/* Message input form */}
+  <form
+    onSubmit={sendMessage}
+    method="post"
+    className="flex items-center gap-3 p-4 bg-base-100 w-full border-t"
+  >
+    <input
+      type="text"
+      placeholder="Type a message"
+      className="input input-bordered w-full px-4 text-base-content"
+      value={newMessage}
+      onChange={(e) => setNewMessage(e.target.value)}
+      onKeyDown={handleKeyDown}
+    />
+    <button className="btn bg-primary text-white" disabled={isSending}>
+      {isSending ? "Sending..." : "Send"}
+    </button>
+  </form>
+</div>
+
   );
 };
 

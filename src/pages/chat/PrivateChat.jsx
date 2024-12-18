@@ -95,7 +95,10 @@ const PrivateChat = () => {
                     />
                     <div className="flex flex-col">
                       <p className="capitalize">{chat.chatName}</p>
-                      <p className="text-sm">
+                      <p 
+                        className="text-sm truncate max-w-[200px]" 
+                        style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
                         {chat?.latestMessage?.content || ""}
                       </p>
                     </div>
